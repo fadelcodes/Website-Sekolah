@@ -1,0 +1,8 @@
+� ADMIN ACCOUNT SETUP COMPLETED!
+========================================
+� Email: admin@smp.com
+� Password: cobadulu123
+� Name: Administrator Sistem
+� Role: admin
+� User ID: feb8f1c3-36c8-415d-8eab-c7c9abe0d2c5
+========================================
