@@ -92,3 +92,105 @@ Aplikasi ini **responsif**, **adaptif**, mendukung **autosave real-time tanpa re
 
 ## 🧩 Struktur Folder Frontend
 
+src/
+┣ assets/
+┣ components/
+┃ ┣ layout/ # Header, Sidebar, BottomNav, Layout
+┃ ┣ dashboard/ # CardStat, ChartNilai, QuickAction
+┣ pages/
+┃ ┣ auth/ # Login.jsx, Register.jsx
+┃ ┣ admin/ # DashboardAdmin.jsx, DataAkademik.jsx, Jadwal.jsx, NilaiAbsensi.jsx, Pengumuman.jsx
+┃ ┣ guru/ # DashboardGuru.jsx, KelasSiswa.jsx, NilaiAbsensi.jsx, Jadwal.jsx, Pengumuman.jsx
+┃ ┗ siswa/ # DashboardSiswa.jsx, Jadwal.jsx, NilaiAbsensi.jsx, Pengumuman.jsx
+┣ services/
+┃ ┣ supabase.js
+┃ ┗ api.js
+┣ store/
+┃ ┣ userStore.js
+┃ ┗ uiStore.js
+┣ hooks/
+┃ ┗ useScreenSize.js
+┣ utils/
+┃ ┣ roleCheck.js
+┃ ┗ formatDate.js
+┣ App.jsx
+┗ main.jsx
+
+
+---
+
+## ⚡ Instalasi & Setup
+
+1. **Clone repository**
+```bash
+git clone https://github.com/username/smp-akademik.git
+cd smp-akademik
+
+
+Install dependencies
+
+npm install
+
+
+Setup environment variables (.env)
+
+VITE_SUPABASE_URL=<your-supabase-url>
+VITE_SUPABASE_ANON_KEY=<your-supabase-anon-key>
+
+
+Jalankan aplikasi
+
+npm run dev
+
+
+Buka di browser
+
+http://localhost:5173
+
+🖼️ Screenshot / Preview
+Admin Dashboard
+
+Guru Dashboard
+
+Siswa Dashboard
+
+🔧 Cara Testing Supabase
+
+Buat project baru di Supabase
+
+Buat tabel sesuai Struktur Database di atas
+
+Aktifkan Realtime pada tabel nilai, absensi, dan pengumuman
+
+Masukkan Supabase URL & anon key di .env
+
+Jalankan aplikasi → login → coba input data → harus langsung muncul tanpa reload
+
+🏷️ Fitur Tambahan
+
+Autosave data real-time (checkpoint)
+
+Toast notification untuk aksi CRUD
+
+PWA installable di HP
+
+Mode gelap opsional via TailwindCSS
+
+📜 Lisensi
+
+MIT License © [Your Name]
+
+🎯 Tujuan Proyek
+
+Membangun sistem manajemen akademik SMP yang:
+
+Modular, efisien, dan mudah dikembangkan
+
+Cepat, ringan, dan real-time
+
+Responsif di HP, tablet, dan desktop
+
+UI profesional, lembut, dan efisien
+
+Autosave data realtime tanpa reload
+
