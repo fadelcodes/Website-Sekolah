@@ -1,45 +1,50 @@
-import React from 'react'
-import { Menu, Bell, User } from 'lucide-react'
-import { useUiStore } from '../../store/uiStore'
-import { useAuth } from '../../hooks/useAuth'
+// src/components/layout/Header.jsx
+import React from "react";
+import { Menu } from "lucide-react";
+import { useState } from "react";
 
-function Header() {
-  const { toggleSidebar } = useUiStore()
-  const { user, logout } = useAuth()
-
+export default function Header() {
+  const [open, setOpen] = useState(false);
   return (
-    <header className="bg-white shadow-sm border-b border-gray-200 px-4 py-3">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center space-x-4">
+    <header className="bg-white border-b border-gray-200 sticky top-0 z-40">
+      <div className="max-w-[1400px] mx-auto flex items-center justify-between px-4 py-3 md:py-4">
+        <div className="flex items-center gap-4">
+          {/* Hamburger visible on mobile only */}
           <button
-            onClick={toggleSidebar}
-            className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            className="md:hidden p-2 rounded-md hover:bg-gray-100"
+            aria-label="Open menu"
+            onClick={() => {
+              // emit event to open overlay sidebar if you implement overlay
+              const ev = new CustomEvent("openMobileSidebar");
+              window.dispatchEvent(ev);
+            }}
           >
-            <Menu className="w-5 h-5" />
+            <Menu size={20} />
           </button>
-          <h1 className="text-xl font-semibold text-gray-800">
-            SMP Management System
-          </h1>
+          <div className="text-lg font-semibold">SMP Akademik</div>
         </div>
-        
-        <div className="flex items-center space-x-3">
-          <button className="p-2 rounded-lg hover:bg-gray-100 transition-colors relative">
-            <Bell className="w-5 h-5" />
-            <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
-          </button>
-          
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-              <User className="w-4 h-4 text-blue-600" />
-            </div>
-            <span className="text-sm font-medium text-gray-700">
-              {user?.nama}
-            </span>
+
+        <div className="flex items-center gap-3">
+          <div className="hidden sm:block">
+            <input
+              type="search"
+              placeholder="Cari data, siswa, kelas..."
+              className="w-full max-w-xs px-3 py-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-400"
+            />
+          </div>
+
+          <div className="flex items-center gap-3">
+            <button className="p-2 rounded-full hover:bg-gray-100">
+              {/* Profile avatar */}
+              <img
+                src="/src/assets/avatar-placeholder.png"
+                alt="avatar"
+                className="w-8 h-8 rounded-full object-cover"
+              />
+            </button>
           </div>
         </div>
       </div>
     </header>
-  )
+  );
 }
-
-export default Header

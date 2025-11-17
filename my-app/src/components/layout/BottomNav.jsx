@@ -1,48 +1,37 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
-import { 
-  LayoutDashboard, 
-  Calendar, 
-  BookOpen, 
-  Bell,
-  User
-} from 'lucide-react'
-import { useAuth } from '../../hooks/useAuth'
+// src/components/layout/BottomNav.jsx
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { Home, Users, BookOpen, Bell } from "lucide-react";
 
-function BottomNav() {
-  const { user } = useAuth()
+const items = [
+  { to: "/siswa/dashboard", label: "Home", icon: Home },
+  { to: "/siswa/nilai", label: "Nilai", icon: BookOpen },
+  { to: "/siswa/kelas", label: "Kelas", icon: Users },
+  { to: "/siswa/pengumuman", label: "Pengumuman", icon: Bell },
+];
 
-  const getMenu = () => {
-    const baseMenu = [
-      { path: `/${user?.role}/dashboard`, label: 'Dashboard', icon: LayoutDashboard },
-      { path: `/${user?.role}/jadwal`, label: 'Jadwal', icon: Calendar },
-      { path: `/${user?.role}/nilai-absensi`, label: 'Nilai', icon: BookOpen },
-      { path: `/${user?.role}/pengumuman`, label: 'Info', icon: Bell },
-    ]
-
-    return baseMenu
-  }
-
+export default function BottomNav() {
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-2 flex items-center justify-around safe-area-bottom">
-      {getMenu().map((item) => (
-        <NavLink
-          key={item.path}
-          to={item.path}
-          className={({ isActive }) =>
-            `flex flex-col items-center space-y-1 p-2 rounded-lg transition-all duration-200 flex-1 max-w-20 ${
-              isActive
-                ? 'text-blue-600'
-                : 'text-gray-400'
-            }`
-          }
-        >
-          <item.icon className="w-5 h-5" />
-          <span className="text-xs font-medium">{item.label}</span>
-        </NavLink>
-      ))}
+    <nav className="bg-white border-t border-gray-200">
+      <div className="max-w-[1400px] mx-auto flex justify-between px-6 py-2">
+        {items.map((it) => {
+          const Icon = it.icon;
+          return (
+            <NavLink
+              key={it.to}
+              to={it.to}
+              className={({ isActive }) =>
+                `flex-1 flex flex-col items-center justify-center text-xs py-2 ${
+                  isActive ? "text-blue-600" : "text-gray-600"
+                }`
+              }
+            >
+              <Icon size={18} />
+              <span className="mt-1">{it.label}</span>
+            </NavLink>
+          );
+        })}
+      </div>
     </nav>
-  )
+  );
 }
-
-export default BottomNav
